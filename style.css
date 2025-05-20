@@ -82,6 +82,27 @@ header .container {
     font-weight: normal;
 }
 
+/* セクションタイトル共通スタイル */
+.section-title {
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: left;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* 縦線スタイル */
+.vertical-bar {
+    display: inline-block;
+    width: 3px;
+    height: 20px;
+    background-color: #333333;
+    margin-right: 12px;
+}
+
 /* WORKSセクション */
 .works {
     padding-top: 120px;
@@ -98,20 +119,13 @@ header .container {
     box-sizing: border-box;
 }
 
-.works h2 {
-    font-size: 14px;
-    margin-top: 0; 
-    margin-bottom: 20px;
-    font-weight: normal;
-    text-align: left;
-}
-
 .works h3 {
     font-size: 28px; /* スクリーンショット通り28px */
     margin-top: 0;
     margin-bottom: 10px;
     font-weight: normal;
     text-align: left;
+    white-space: nowrap; /* 改行を防止 */
 }
 
 .works p {
@@ -160,9 +174,7 @@ header .container {
 }
 
 /* CONTACT見出しを独立させ、上下に120pxの間隔を設定 */
-.contact h2 {
-    font-size: 14px;
-    font-weight: normal;
+.contact .section-title {
     margin: 0;
     padding: 120px 0 120px 40px; /* 上下120px、左40px */
     box-sizing: border-box;
@@ -358,13 +370,15 @@ form button[type="submit"] {
         left: 0 !important; /* モバイルでは左シフトを解除 */
     }
 
-    .works h2 {
+    .section-title {
         margin-bottom: 15px;
     }
 
     .works h3 {
         font-size: 24px;
         margin-bottom: 15px;
+        white-space: nowrap; /* 改行を防止 */
+        overflow-x: auto; /* 長いテキストがある場合はスクロール可能に */
     }
 
     .works p {
@@ -374,8 +388,9 @@ form button[type="submit"] {
 
     /* ギャラリーの調整 */
     .gallery {
-        display: block !important; /* グリッドを解除 */
-        gap: 0;
+        display: grid !important; /* グリッドを維持 */
+        grid-template-columns: repeat(2, 1fr) !important; /* 2列のグリッド */
+        gap: 20px !important; /* 間隔を調整 */
     }
 
     .gallery-item,
@@ -386,7 +401,7 @@ form button[type="submit"] {
         width: 100% !important;
         height: auto !important;
         max-height: 400px;
-        margin-bottom: 20px;
+        margin-bottom: 0; /* グリッドのgapを使うためマージンは不要 */
     }
 
     .gallery-item img,
@@ -397,6 +412,7 @@ form button[type="submit"] {
         width: 100% !important;
         height: auto !important;
         max-height: 400px;
+        object-fit: cover;
     }
 
     /* CONTACTセクションの調整 */
@@ -404,7 +420,7 @@ form button[type="submit"] {
         top: 0 !important; /* モバイルでは上シフトを解除 */
     }
 
-    .contact h2 {
+    .contact .section-title {
         padding: 60px 0 60px 20px;
         left: 0 !important; /* モバイルでは左シフトを解除 */
     }
@@ -498,6 +514,8 @@ form button[type="submit"] {
 
     .works h3 {
         font-size: 20px;
+        white-space: nowrap; /* 改行を防止 */
+        overflow-x: auto; /* 長いテキストがある場合はスクロール可能に */
     }
 
     .works p {
@@ -505,14 +523,20 @@ form button[type="submit"] {
         margin-bottom: 40px;
     }
 
-    /* ギャラリーの調整 */
+    /* ギャラリーの調整 - iPhone 11 Pro向け */
+    .gallery {
+        display: grid !important; /* グリッドを維持 */
+        grid-template-columns: repeat(2, 1fr) !important; /* 2列のグリッド */
+        gap: 15px !important; /* 間隔を調整 */
+    }
+
     .gallery-item,
     .gallery-item img {
-        max-height: 300px;
+        max-height: 200px; /* 高さを調整 */
     }
 
     /* CONTACTセクションの調整 */
-    .contact h2 {
+    .contact .section-title {
         padding: 40px 0 40px 20px;
     }
 
