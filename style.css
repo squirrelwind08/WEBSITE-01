@@ -151,6 +151,7 @@ header .container {
 .gallery-item {
     width: 460px; /* 設計図通りの幅に設定 */
     height: 500px; /* 設計図通りの高さに設定 */
+    position: relative; /* 子要素の位置決めの基準点 */
 }
 
 .gallery-item img {
@@ -377,8 +378,8 @@ form button[type="submit"] {
     .works h3 {
         font-size: 24px;
         margin-bottom: 15px;
-        white-space: nowrap; /* 改行を防止 */
-        overflow-x: auto; /* 長いテキストがある場合はスクロール可能に */
+        white-space: normal; /* 改行を許可 */
+        word-break: break-word; /* 長い単語も必要に応じて折り返し */
     }
 
     .works p {
@@ -399,9 +400,10 @@ form button[type="submit"] {
     .gallery-item:nth-child(3),
     .gallery-item:nth-child(4) {
         width: 100% !important;
-        height: auto !important;
-        max-height: 400px;
-        margin-bottom: 0; /* グリッドのgapを使うためマージンは不要 */
+        height: 0 !important; /* 高さを0に設定 */
+        padding-bottom: 100% !important; /* 幅と同じ高さを確保（正方形） */
+        position: relative !important; /* 子要素の位置決めの基準点 */
+        overflow: hidden !important; /* はみ出た部分を隠す */
     }
 
     .gallery-item img,
@@ -409,10 +411,12 @@ form button[type="submit"] {
     .gallery-item:nth-child(2) img,
     .gallery-item:nth-child(3) img,
     .gallery-item:nth-child(4) img {
+        position: absolute !important; /* 親要素に対して絶対配置 */
+        top: 0 !important;
+        left: 0 !important;
         width: 100% !important;
-        height: auto !important;
-        max-height: 400px;
-        object-fit: cover;
+        height: 100% !important;
+        object-fit: cover !important; /* 画像比率を維持しながら指定サイズにフィット */
     }
 
     /* CONTACTセクションの調整 */
@@ -513,9 +517,11 @@ form button[type="submit"] {
     }
 
     .works h3 {
-        font-size: 20px;
-        white-space: nowrap; /* 改行を防止 */
-        overflow-x: auto; /* 長いテキストがある場合はスクロール可能に */
+        font-size: 16px; /* フォントサイズを小さく */
+        line-height: 1.4; /* 行間を調整 */
+        letter-spacing: -0.5px; /* 文字間隔を少し詰める */
+        white-space: normal; /* 改行を許可 */
+        word-break: break-word; /* 長い単語も必要に応じて折り返し */
     }
 
     .works p {
@@ -531,8 +537,28 @@ form button[type="submit"] {
     }
 
     .gallery-item,
-    .gallery-item img {
-        max-height: 200px; /* 高さを調整 */
+    .gallery-item:nth-child(1),
+    .gallery-item:nth-child(2),
+    .gallery-item:nth-child(3),
+    .gallery-item:nth-child(4) {
+        width: 100% !important;
+        height: 0 !important; /* 高さを0に設定 */
+        padding-bottom: 100% !important; /* 幅と同じ高さを確保（正方形） */
+        position: relative !important; /* 子要素の位置決めの基準点 */
+        overflow: hidden !important; /* はみ出た部分を隠す */
+    }
+
+    .gallery-item img,
+    .gallery-item:nth-child(1) img,
+    .gallery-item:nth-child(2) img,
+    .gallery-item:nth-child(3) img,
+    .gallery-item:nth-child(4) img {
+        position: absolute !important; /* 親要素に対して絶対配置 */
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* 画像比率を維持しながら指定サイズにフィット */
     }
 
     /* CONTACTセクションの調整 */
